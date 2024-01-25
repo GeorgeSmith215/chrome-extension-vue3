@@ -12,7 +12,7 @@
         ></textarea>
       </div>
       <div class="btnWarp">
-        <div class="primary btn" @click="priHandle">确定</div>
+        <div class="primary btn" @click="priHandle" v-show="oneTerm.day">确定</div>
         <div class="return btn" @click="router.go(-1)">返回</div>
       </div>
     </div>
@@ -20,8 +20,9 @@
 </template>
 <script>
 import Calendar from "../components/vue-calendar-component/calendar.vue";
+import calendarUtil from "../components/vue-calendar-component/calendar"
 
-import { onMounted, reactive, toRefs } from "vue";
+import { nextTick, onMounted, reactive, toRefs } from "vue";
 import { useRouter } from "vue-router";
 import {
   getLocalStorage,
@@ -41,26 +42,42 @@ export default {
         info: "",
       },
     });
-    const choose = (val) => {
+    const choose = async (val) => {
       state.oneTerm.day = val;
-      const { info } = getLocalStorage(val);
+
+      console.log(val);
+      const { info } = await getLocalStorage(val);
 
       state.oneTerm.info = info;
     };
     // 点击确定
-    const priHandle = () => {
+    const priHandle = async () => {
       if (state.oneTerm.info === "") {
         // 删除
         delLocalStorage(state.oneTerm.day);
       } else {
         addLocalStorage(state.oneTerm.day, state.oneTerm.info);
       }
-      const { days } = getLocalStorage();
-      state.impData = days;
+      // 确认保存成功
+      setTimeout(async () => {
+        const { days } = await getLocalStorage();
+        state.impData = days;
+        if(state.oneTerm.info) {
+            chrome.notifications.create(null, {
+            type: 'basic',
+            iconUrl: '../logo.png',
+            title: '设置成功！',
+            message: `${state.oneTerm.day}当天会自动提示您哦`,
+          });
+        }
+      }, 500);
     };
-    onMounted(() => {
-      const { days } = getLocalStorage();
+    onMounted(async () => {
+      const { days } = await getLocalStorage();
       state.impData = days;
+      nextTick(() => {
+        choose(calendarUtil["dateFormat"](new Date()))
+      })
     });
 
     return {
