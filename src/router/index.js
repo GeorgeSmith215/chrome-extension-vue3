@@ -1,4 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import ThemeColor from "../views/ThemeColor.vue";
+import ThemeImg from "../views/ThemeImg.vue";
 const routes = [
   {
     path: "/",
@@ -8,7 +10,12 @@ const routes = [
   {
     path: "/themecolor",
     name: "ThemeColor",
-    component: () => import("../views/ThemeColor.vue"),
+    component: ThemeColor,
+  },
+  {
+    path: "/themeimg",
+    name: "ThemeImg",
+    component: ThemeImg,
   },
 ];
 const router = createRouter({

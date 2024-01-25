@@ -7,7 +7,7 @@
           alt=""
           @click="rouerChnage('/themecolor')"
         />
-        <img src="../assets/bg.png" alt="" />
+        <img src="../assets/bg.png" @click="rouerChnage('/themeimg')" alt="" />
       </div>
       <div class="calendar">
         <img src="../assets/timer.png" alt="" />
@@ -22,7 +22,6 @@ export default {
   setup() {
     const router = useRouter();
     const rouerChnage = (url) => {
-      console.log(url)
       router.push(url);
     };
     return {
