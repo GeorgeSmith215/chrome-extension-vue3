@@ -1,0 +1,33 @@
+{
+    "name": "chrome-extension-vue3",
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "description": "a chrome extension for customizing your browsing page.",
+    "icons": {
+      "48": "./logo.png"
+    },
+    "browser_action": {
+      "default_popup": "index.html"
+    },
+    "content_scripts": [
+      {
+          "matches": [
+              "<all_urls>"
+          ],
+          "js": [
+            "assets/index.427f721e.js",
+            "props.js"
+          ],
+          "run_at": "document_start",
+          "all_frames": true,
+          "match_about_blank": true
+      }
+  ],
+  "permissions": [
+    "fontSettings",
+    "notifications",
+    "storage",
+    "tabs",
+    "<all_urls>"
+  ]
+}
