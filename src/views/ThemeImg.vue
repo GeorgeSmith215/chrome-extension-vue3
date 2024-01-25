@@ -90,7 +90,7 @@ export default {
 
       .warning {
         background-color: goldenrod;
-        margin-right: 10px;
+        margin-right: 15px;
       }
     }
   }

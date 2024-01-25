@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import ThemeColor from "../views/ThemeColor.vue";
 import ThemeImg from "../views/ThemeImg.vue";
+import SetCalendar from "../views/SetCalendar.vue";
 const routes = [
   {
     path: "/",
@@ -17,9 +18,16 @@ const routes = [
     name: "ThemeImg",
     component: ThemeImg,
   },
+  {
+    path: "/setcalendar",
+    name: "SetCalendar",
+    component: SetCalendar,
+  },
 ];
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
 export default router;

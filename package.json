@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "vue": "^3.0.0-rc.1",
+    "vue-calendar-component": "^2.8.2",
     "vue-router": "^4.0.13"
   },
   "devDependencies": {

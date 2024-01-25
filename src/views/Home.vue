@@ -5,12 +5,16 @@
         <img
           src="../assets/color.png"
           alt=""
-          @click="rouerChnage('/themecolor')"
+          @click="routerChange('/themecolor')"
         />
-        <img src="../assets/bg.png" @click="rouerChnage('/themeimg')" alt="" />
+        <img src="../assets/bg.png" @click="routerChange('/themeimg')" alt="" />
       </div>
       <div class="calendar">
-        <img src="../assets/timer.png" alt="" />
+        <img
+          src="../assets/timer.png"
+          @click="routerChange('/setcalendar')"
+          alt=""
+        />
       </div>
     </div>
   </div>
@@ -21,11 +25,11 @@ import { useRouter } from "vue-router";
 export default {
   setup() {
     const router = useRouter();
-    const rouerChnage = (url) => {
+    const routerChange = (url) => {
       router.push(url);
     };
     return {
-      rouerChnage,
+      routerChange,
     };
   },
 };
